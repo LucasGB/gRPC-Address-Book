@@ -46,7 +46,19 @@ def run():
 
   reply = stub.add_contact(agenda_pb2.Contact(name='Lucas', phone_number='011977142777'))
   print("Client received: " + reply.message)
+  reply = stub.add_contact(agenda_pb2.Contact(name='Yudi', phone_number='123456789'))
+  print("Client received: " + reply.message)
+  reply = stub.edit_contact(agenda_pb2.Contact(name='Yudi', phone_number='12345678910'))
+  print("Client received: " + reply.message)
 
+  print("Cliente recebeu a seguinte agenda:")
+  for contact in stub.list_contacts(agenda_pb2.EmptyRequest()):
+  	print("Nome: %s\nNumero: %s\n" % (contact.name, contact.phone_number))
+  #a = stub.list_contacts(agenda_pb2.EmptyRequest())
+  #print(a)
 
+  reply = stub.delete_contact(agenda_pb2.Contact(name='Yudi', phone_number='011977142777'))
+  print("Client received: " + reply.message)
+  
 if __name__ == '__main__':
   run()

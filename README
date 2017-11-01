@@ -1,8 +1,21 @@
-INSTALL
-------
+Author: Lucas Guedes Barboza
+RA: 1601121
+
+1. Install the following dependencies:
 
 pip3.4 install grpcio
 pip3.4 install grpcio-tools
 
 
+2. [Optional] Compile agenda.proto with:
 # python -m grpc_tools.protoc  -I . --python_out=. --grpc_python_out=. agenda.proto
+
+3. Add the following {header} in agenda_pb2.py and agenda_pb2_grpc.py
+
+{header} =	
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+4. Run the following commands on different terminals
+  4.1 python server_agenda.py
+  4.2 python client_agenda.py

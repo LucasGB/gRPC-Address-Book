@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='agenda.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0c\x61genda.proto\"-\n\x07\x43ontact\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0cphone_number\x18\x02 \x01(\t\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t2+\n\x06\x41genda\x12!\n\x0b\x61\x64\x64_contact\x12\x08.Contact\x1a\x06.Reply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0c\x61genda.proto\"-\n\x07\x43ontact\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0cphone_number\x18\x02 \x01(\t\"\x0e\n\x0c\x45mptyRequest\"\x18\n\x05Reply\x12\x0f\n\x07message\x18\x01 \x01(\t2\xa3\x01\n\x06\x41genda\x12!\n\x0b\x61\x64\x64_contact\x12\x08.Contact\x1a\x06.Reply\"\x00\x12$\n\x0e\x64\x65lete_contact\x12\x08.Contact\x1a\x06.Reply\"\x00\x12\"\n\x0c\x65\x64it_contact\x12\x08.Contact\x1a\x06.Reply\"\x00\x12,\n\rlist_contacts\x12\r.EmptyRequest\x1a\x08.Contact\"\x00\x30\x01\x62\x06proto3')
 )
 
 
@@ -65,20 +65,13 @@ _CONTACT = _descriptor.Descriptor(
 )
 
 
-_HELLOREQUEST = _descriptor.Descriptor(
-  name='HelloRequest',
-  full_name='HelloRequest',
+_EMPTYREQUEST = _descriptor.Descriptor(
+  name='EmptyRequest',
+  full_name='EmptyRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='HelloRequest.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -92,7 +85,7 @@ _HELLOREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=63,
-  serialized_end=91,
+  serialized_end=77,
 )
 
 
@@ -122,12 +115,12 @@ _REPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=93,
-  serialized_end=117,
+  serialized_start=79,
+  serialized_end=103,
 )
 
 DESCRIPTOR.message_types_by_name['Contact'] = _CONTACT
-DESCRIPTOR.message_types_by_name['HelloRequest'] = _HELLOREQUEST
+DESCRIPTOR.message_types_by_name['EmptyRequest'] = _EMPTYREQUEST
 DESCRIPTOR.message_types_by_name['Reply'] = _REPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -138,12 +131,12 @@ Contact = _reflection.GeneratedProtocolMessageType('Contact', (_message.Message,
   ))
 _sym_db.RegisterMessage(Contact)
 
-HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), dict(
-  DESCRIPTOR = _HELLOREQUEST,
+EmptyRequest = _reflection.GeneratedProtocolMessageType('EmptyRequest', (_message.Message,), dict(
+  DESCRIPTOR = _EMPTYREQUEST,
   __module__ = 'agenda_pb2'
-  # @@protoc_insertion_point(class_scope:HelloRequest)
+  # @@protoc_insertion_point(class_scope:EmptyRequest)
   ))
-_sym_db.RegisterMessage(HelloRequest)
+_sym_db.RegisterMessage(EmptyRequest)
 
 Reply = _reflection.GeneratedProtocolMessageType('Reply', (_message.Message,), dict(
   DESCRIPTOR = _REPLY,
@@ -160,8 +153,8 @@ _AGENDA = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=119,
-  serialized_end=162,
+  serialized_start=106,
+  serialized_end=269,
   methods=[
   _descriptor.MethodDescriptor(
     name='add_contact',
@@ -170,6 +163,33 @@ _AGENDA = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_CONTACT,
     output_type=_REPLY,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='delete_contact',
+    full_name='Agenda.delete_contact',
+    index=1,
+    containing_service=None,
+    input_type=_CONTACT,
+    output_type=_REPLY,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='edit_contact',
+    full_name='Agenda.edit_contact',
+    index=2,
+    containing_service=None,
+    input_type=_CONTACT,
+    output_type=_REPLY,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='list_contacts',
+    full_name='Agenda.list_contacts',
+    index=3,
+    containing_service=None,
+    input_type=_EMPTYREQUEST,
+    output_type=_CONTACT,
     options=None,
   ),
 ])

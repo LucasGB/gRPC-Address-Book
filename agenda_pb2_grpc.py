@@ -21,6 +21,21 @@ class AgendaStub(object):
         request_serializer=agenda__pb2.Contact.SerializeToString,
         response_deserializer=agenda__pb2.Reply.FromString,
         )
+    self.delete_contact = channel.unary_unary(
+        '/Agenda/delete_contact',
+        request_serializer=agenda__pb2.Contact.SerializeToString,
+        response_deserializer=agenda__pb2.Reply.FromString,
+        )
+    self.edit_contact = channel.unary_unary(
+        '/Agenda/edit_contact',
+        request_serializer=agenda__pb2.Contact.SerializeToString,
+        response_deserializer=agenda__pb2.Reply.FromString,
+        )
+    self.list_contacts = channel.unary_stream(
+        '/Agenda/list_contacts',
+        request_serializer=agenda__pb2.EmptyRequest.SerializeToString,
+        response_deserializer=agenda__pb2.Contact.FromString,
+        )
 
 
 class AgendaServicer(object):
@@ -34,6 +49,27 @@ class AgendaServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def delete_contact(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def edit_contact(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def list_contacts(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_AgendaServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -41,6 +77,21 @@ def add_AgendaServicer_to_server(servicer, server):
           servicer.add_contact,
           request_deserializer=agenda__pb2.Contact.FromString,
           response_serializer=agenda__pb2.Reply.SerializeToString,
+      ),
+      'delete_contact': grpc.unary_unary_rpc_method_handler(
+          servicer.delete_contact,
+          request_deserializer=agenda__pb2.Contact.FromString,
+          response_serializer=agenda__pb2.Reply.SerializeToString,
+      ),
+      'edit_contact': grpc.unary_unary_rpc_method_handler(
+          servicer.edit_contact,
+          request_deserializer=agenda__pb2.Contact.FromString,
+          response_serializer=agenda__pb2.Reply.SerializeToString,
+      ),
+      'list_contacts': grpc.unary_stream_rpc_method_handler(
+          servicer.list_contacts,
+          request_deserializer=agenda__pb2.EmptyRequest.FromString,
+          response_serializer=agenda__pb2.Contact.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

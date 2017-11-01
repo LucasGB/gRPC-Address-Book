@@ -7,20 +7,18 @@ syntax = "proto3";
 // interface de serviço
 service Agenda {
   rpc add_contact (Contact) returns (Reply) {}
+  rpc delete_contact (Contact) returns (Reply) {}
+  rpc edit_contact (Contact) returns (Reply) {}
+  rpc list_contacts (EmptyRequest) returns (stream Contact) {}
 }
-
 
 message Contact {
 	string name = 1;
 	string phone_number = 2;
 }
 
-// mensagem de solicitação
-message HelloRequest {
-  string name = 1;
-}
+message EmptyRequest {}
 
-// mensagem de resposta
 message Reply {
   string message = 1;
 }

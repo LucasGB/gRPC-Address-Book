@@ -52,6 +52,20 @@ class Agenda(agenda_pb2_grpc.AgendaServicer):
       print self.contact_list
       return agenda_pb2.Reply(message="Contato adicionado a lista.")
 
+  def delete_contact(self, request, context):
+    self.contact_list.pop(request.name)
+    print self.contact_list
+    return agenda_pb2.Reply(message="Contato removido da lista.")
+
+  def edit_contact(self, request, context):
+    self.contact_list[request.name] = request.phone_number
+    return agenda_pb2.Reply(message="Contato atualizado.")
+
+
+  def list_contacts(self, request, context):
+    for name, phone_number in self.contact_list.items():
+      yield agenda_pb2.Contact(name=name, phone_number=phone_number)
+
 def serve():
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
   agenda_pb2_grpc.add_AgendaServicer_to_server(Agenda(), server)
