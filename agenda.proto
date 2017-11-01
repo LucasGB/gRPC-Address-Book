@@ -1,0 +1,26 @@
+// Copyright 2015, Google Inc.
+// All rights reserved.
+
+
+syntax = "proto3";
+
+// interface de serviço
+service Agenda {
+  rpc add_contact (Contact) returns (Reply) {}
+}
+
+
+message Contact {
+	string name = 1;
+	string phone_number = 2;
+}
+
+// mensagem de solicitação
+message HelloRequest {
+  string name = 1;
+}
+
+// mensagem de resposta
+message Reply {
+  string message = 1;
+}
